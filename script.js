@@ -45,7 +45,7 @@ function showAll(myObject) {
   for (i = 0; i < myArray.length; i++) {
     var d = new Date(myArray[i]["created_utc"] * 1000);
     myArray[i]["postId"] = myArray[i]["link_id"] ? myArray[i]["link_id"].replace("t3_", "") : myArray[i]["id"];
-    myArray[i]["shortId"] = myArray[i]["link_id"] ? myArray[i]["link_id"].replace("t3_", "") : myArray[i]["parentId"];
+    myArray[i]["shortId"] = myArray[i]["link_id"] ? myArray[i]["parent_id"].replace("t3_", "") : myArray[i]["id"];
     myArray[i]["timeDiff"] = secondsToDhms(UTCTimestamp() - myArray[i]["created_utc"]);
 
     if(myArray[i]["body"]) myArray[i]["bodyLength"] = myArray[i]["body"].length;
