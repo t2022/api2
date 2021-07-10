@@ -48,9 +48,11 @@ function showAll(myObject) {
     myArray[i]["shortId"] = myArray[i]["link_id"] ? myArray[i]["parent_id"].replace("t3_", "") : myArray[i]["id"];
     myArray[i]["timeDiff"] = secondsToDhms(UTCTimestamp() - myArray[i]["created_utc"]);
 
-    if(myArray[i]["body"]) myArray[i]["bodyLength"] = myArray[i]["body"].length;
-    console.log(myArray[i]["body"].replaceAll('"','&quot;'));
-    myArray[i]["body"] = myArray[i]["body"].replace('"','&quot;');
+    if(myArray[i]["body"]) {
+      myArray[i]["bodyLength"] = myArray[i]["body"].length;
+      console.log(myArray[i]["body"].replaceAll('"','&quot;'));
+      myArray[i]["body"] = myArray[i]["body"].replace('"','&quot;');
+    }
   }
   var submission = document.getElementById("submission").checked;
   if (submission) {
