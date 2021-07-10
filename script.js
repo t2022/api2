@@ -12,7 +12,7 @@ if ("serviceWorker" in navigator) {
  }
 }
 
-var limit = 500;
+var limit = 200;
 
 function listen(id) {
   var msg = document.getElementById(id).value;
@@ -49,11 +49,14 @@ function showAll(myObject) {
     myArray[i]["timeDiff"] = secondsToDhms(UTCTimestamp() - myArray[i]["created_utc"]);
 
     if(myArray[i]["body"]) myArray[i]["bodyLength"] = myArray[i]["body"].length;
+    console.log(myArray[i]["body"].replaceAll('"','&quot;'));
+    myArray[i]["body"] = myArray[i]["body"].replace('"','&quot;');
   }
   var submission = document.getElementById("submission").checked;
   if (submission) {
     for (i = 0; i < myArray.length; i++) {
       myArray[i]["body"] = myArray[i]["title"] + "\n\n" + myArray[i]["selftext"];
+      myArray[i]["body"] = myArray[i]["body"].replaceAll('\n',' &bull; ');
       myArray[i]["bodyLength"] = myArray[i]["body"].length;
       myArray[i]["permalink"] = "/" + myArray[i]["id"];
     }
@@ -161,11 +164,20 @@ function secondsToDhms(seconds) {
   var h = Math.floor(seconds % (3600*24) / 3600);
   var m = Math.floor(seconds % 3600 / 60);
   var s = Math.floor(seconds % 60);
+  var disp = "";
 
-  var yDisplay = y > 0 ? y + "y " : "";
-  var dDisplay = d > 0 ? d + "d " : "";
-  var hDisplay = h > 0 ? h + "h " : "";
-  var mDisplay = m > 0 ? m + "m " : "";
-  var sDisplay = s > 0 ? s + "s" : "";
-  return yDisplay + dDisplay + hDisplay + mDisplay + sDisplay;
+  // var yDisplay = y > 0 ? y + "y " : "";
+  // var dDisplay = d > 0 ? d + "d " : "";
+  // var hDisplay = h > 0 ? h + "h " : "";
+  // var mDisplay = m > 0 ? m + "m " : "";
+  // var sDisplay = s > 0 ? s + "s" : "";
+  // return yDisplay + dDisplay + hDisplay + mDisplay + sDisplay;
+
+  if(y > 0) disp = y + "y ";
+  else if(d > 0) disp = d + "d ";
+  else if(h > 0) disp = h + "h ";
+  else if(m > 0) disp = m + "m ";
+  else if(s > 0) disp = s + "s ";
+
+  return disp;
 }

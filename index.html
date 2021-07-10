@@ -34,13 +34,14 @@
 <div id="id01" class="">
   <div class="result" w3-repeat="data">
     <small class="small-text links gray">
-      <a class="w3-btn w3-green" onclick="copyText('{{id}}')">Copy</a> &bull; In <a href="https://old.reddit.com/r/{{subreddit}}" target="_blank">r/{{subreddit}}</a> &bull;  by <a href="https://old.reddit.com/u/{{author}}" target="_blank">u/{{author}} </a> &bull; <small><b>{{timeDiff}}</b> ago</small> &bull; <span class="body-length">{{bodyLength}}</span>
-    </small>
-    <textarea id="{{id}}" class="content">{{body}}
-      
-[Original](https://redd.it/{{shortId}})</textarea><br>
-    
-  </div>
+      <a class="copy-button" onclick="copyText('{{id}}')">Copy</a> 
+      <a href="https://www.reddit.com/r/{{subreddit}}" target="_blank">r/{{subreddit}}</a> | 
+      <a href="https://www.reddit.com/u/{{author}}" target="_blank">u/{{author}}</a> | 
+      <a href="https://www.reddit.com{{permalink}}">{{timeDiff}} ago</a>
+      <span class="w3-hide body-length">{{bodyLength}}</span>
+    <textarea id="{{id}}" class="content">{{body}}</textarea>
+
+</div>
 </div>
 
 <script src="script.js"></script>
